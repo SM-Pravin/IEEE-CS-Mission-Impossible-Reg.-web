@@ -1,0 +1,29 @@
+/* Intro, scroll rope, reduced motion */
+/* ---------- intro: five-second self-destruct ---------- */
+#intro{position:fixed;inset:0;z-index:200;background:#050303;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:24px;transition:opacity .5s .35s,visibility 0s .9s}
+#intro.gone{opacity:0;visibility:hidden}
+#intro .hud-bg{position:absolute;inset:0;margin:auto;width:min(120vw,900px);opacity:.35;animation:spin 60s linear infinite}
+#intro .tag{color:var(--red-hot);margin-bottom:18px;position:relative}
+#intro h2{font-size:clamp(22px,5.6vw,40px);max-width:16ch;position:relative}
+#intro .num{font-family:var(--disp);font-size:clamp(120px,32vw,260px);line-height:1;color:var(--red-hot);position:relative;margin:6px 0 10px}
+#intro .fuse{position:relative;width:min(320px,70vw);height:3px;background:#2a1111;margin:0 auto 26px;overflow:hidden}
+#intro .fuse i{position:absolute;inset:0;background:var(--red-hot);transform-origin:left;box-shadow:0 0 12px var(--red-hot)}
+#intro .fuse i.go{animation:burn 3.6s linear forwards}
+#intro .skip{position:relative;background:none;border:1px solid #5b2020;color:#d6aaa6;font:12px var(--mono);letter-spacing:.14em;padding:10px 16px;cursor:pointer;text-transform:uppercase}
+#intro .skip:hover{border-color:#fff;color:#fff}
+#intro.boom::after{content:"";position:absolute;inset:0;background:#fff;animation:flash .6s forwards}
+@keyframes burn{to{transform:scaleX(0)}}
+@keyframes flash{0%{opacity:0}20%{opacity:1;background:#fff}100%{opacity:0;background:var(--red)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* rope progress (rappelling agent from the poster) */
+.rope{position:fixed;left:5px;top:0;z-index:70;pointer-events:none;width:20px;height:100vh}
+.rope i{position:absolute;left:9px;top:0;width:2px;height:0;background:#ffffffcc}
+.rope svg{position:absolute;left:0;top:0;width:20px;height:30px;transform:translateY(0)}
+@media(max-width:560px){.rope{left:0;opacity:.7}}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .rv,.hero .in{opacity:1;transform:none}
+}

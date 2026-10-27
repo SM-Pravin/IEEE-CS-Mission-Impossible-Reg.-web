@@ -1,0 +1,10 @@
+/* Design tokens + reset. Change colours/fonts here. */
+:root{
+  --red:#d3130e; --red-hot:#ef2b20; --deep:#7c0906;
+  --coral:#ff7a70; --cream:#ffd1cc;
+  --ink:#0b0707; --ink2:#160a0a; --paper:#ece6db; --paper-ink:#3a0c0a;
+  --disp:'Saira Stencil One','Impact',system-ui,sans-serif;
+  --body:'Chakra Petch',system-ui,sans-serif;
+  --mono:'Share Tech Mono',ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}

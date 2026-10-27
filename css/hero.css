@@ -1,0 +1,134 @@
+/* Hero: poster-red stage, agent silhouette, helicopter, London skyline */
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;background:var(--red);min-height:100svh;display:flex;align-items:center;padding:84px 16px 200px;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;
+  background:
+   radial-gradient(900px 500px at 85% 0%,#ff4a3a55,transparent 60%),
+   radial-gradient(700px 500px at 0% 100%,#5a0705aa,transparent 65%),
+   var(--red)}
+.hero .streak{position:absolute;z-index:-1;left:-10%;width:130%;height:3px;background:#0b0707;transform:rotate(-24deg);transform-origin:left;opacity:.9}
+.hero .streak.s1{top:62%}.hero .streak.s2{top:66%;height:9px;opacity:.6}
+.hero .sil{position:absolute;right:-30px;top:40px;width:min(60vw,360px);opacity:.28;z-index:-1}
+.heli{position:absolute;top:15%;left:-220px;width:clamp(110px,20vw,190px);z-index:-1;fill:var(--ink);animation:fly 36s ease-in-out infinite 2s}
+
+/* Main Rotor styling & perspective scaleY from snippet technique (strictly parallel to fuselage) */
+.heli .rotor{
+  transform-origin: 588px 368px;
+  transform: scaleY(0.075);
+}
+
+.heli .rotator{
+  transform-origin: 588px 368px;
+  animation: rotate 0.12s linear infinite;
+}
+
+@keyframes rotate{
+  0%{transform: rotate(0deg)}
+  100%{transform: rotate(360deg)}
+}
+
+/* Fast spinning tail anti-torque rotor */
+.heli .tail-rotor{
+  transform-origin: 92px 470px;
+  animation: tail-rotor-spin 0.035s linear infinite;
+}
+@keyframes tail-rotor-spin{
+  from{transform: rotate(0deg)}
+  to{transform: rotate(360deg)}
+}
+
+/* Lifelike aerodynamic helicopter flight trajectory with altitude drift and subtle pitch */
+@keyframes fly{
+  0%{transform:translateX(0) translateY(0) rotate(3deg)}
+  20%{transform:translateX(22vw) translateY(-14px) rotate(1.5deg)}
+  45%{transform:translateX(48vw) translateY(8px) rotate(4deg)}
+  70%{transform:translateX(75vw) translateY(-10px) rotate(2deg)}
+  90%{transform:translateX(92vw) translateY(4px) rotate(3.5deg)}
+  100%{transform:translateX(calc(100vw + 320px)) translateY(0) rotate(3deg)}
+}
+.bus{animation:drive 24s linear infinite}
+@keyframes drive{0%{transform:translateX(-100px)}100%{transform:translateX(1700px)}}
+
+/* Synchronized rotating road wheels */
+.bus-wheel{
+  animation:bus-wheel-roll 0.55s linear infinite;
+}
+@keyframes bus-wheel-roll{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+/* London Eye slow spinning animation (100s realistic revolution) */
+.ferris-wheel-spin{
+  transform-origin: 990px 155px;
+  animation: spin-wheel 100s linear infinite;
+}
+@keyframes spin-wheel{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+/* London Eye passenger pods counter-rotation to stay constantly level & upright */
+.ferris-pod{
+  animation: pod-level 100s linear infinite;
+}
+@keyframes pod-level{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(-360deg)}
+}
+
+/* Big Ben clock hands rotation */
+.clock-hand-hour{
+  transform-origin: 700px 117px;
+  animation: clock-turn 120s linear infinite;
+}
+.clock-hand-minute{
+  transform-origin: 700px 117px;
+  animation: clock-turn 10s linear infinite;
+}
+@keyframes clock-turn{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+.hero .inner{max-width:1040px;margin:0 auto;width:100%}
+.hero .in{opacity:1;transform:none}
+.presents{margin-bottom:14px;color:#fff;opacity:.92;font-size:clamp(11px, 2.5vw, 13px)}
+.hero h1{font-size:clamp(46px,14vw,150px);line-height:.92;color:#fff;text-shadow:0 4px 0 #0b070744;word-break:break-word}
+.hero h1 .ln{display:block;position:relative;width:fit-content}
+.hero h1 .o{color:var(--ink);-webkit-text-stroke:0}
+.glitch::before,.glitch::after{content:attr(data-t);position:absolute;inset:0;opacity:0;pointer-events:none}
+.glitch::before{color:var(--ink);animation:gA 6s infinite}
+.glitch::after{color:#fff;mix-blend-mode:difference;animation:gB 6s infinite}
+@keyframes gA{0%,91%,100%{opacity:0;transform:none}92%{opacity:1;transform:translate(-6px,2px);clip-path:inset(12% 0 55% 0)}95%{opacity:1;transform:translate(6px,-2px);clip-path:inset(62% 0 6% 0)}97%{opacity:0}}
+@keyframes gB{0%,92%,100%{opacity:0}93%{opacity:.8;transform:translate(5px,0);clip-path:inset(40% 0 30% 0)}96%{opacity:0}}
+.tagline{font:700 clamp(14px,3.4vw,22px) var(--body);letter-spacing:.18em;text-transform:uppercase;margin:18px 0 24px;color:#fff}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;list-style:none}
+.chips li{font:600 12px var(--body);letter-spacing:.08em;background:var(--ink);color:#fff;padding:8px 12px;border-left:4px solid #fff}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:32px}
+.countdown-block{max-width:370px}
+.count-header-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.count-label{color:var(--cream);font-weight:700;letter-spacing:.14em;font-size:11px;margin:0}
+.cal-sync-pill{display:inline-flex;align-items:center;gap:4px;background:#0b0707cc;border:1px solid #ffffff33;padding:2px 6px;border-radius:3px}
+.cal-sync-tag{font-size:10px;color:var(--coral);font-weight:700;letter-spacing:.1em;margin-right:2px}
+.cal-pill{display:inline-flex;align-items:center;gap:4px;color:#fff;text-decoration:none;font:700 10px/1 var(--mono);letter-spacing:.08em;padding:4px 6px;background:#ffffff1f;border-radius:2px;transition:background .2s,transform .2s,color .2s}
+.cal-pill:hover{background:var(--red);color:#fff;transform:translateY(-1px)}
+.cal-pill svg{display:inline-block;vertical-align:middle;flex-shrink:0}
+.count{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap}
+.count .box{background:#0b0707d9;min-width:54px;flex:1 0 auto;max-width:85px;padding:8px 6px;text-align:center;border-top:3px solid #fff}
+.count .box b{display:block;font:400 clamp(24px,6vw,44px)/1 var(--disp)}
+.count .box span{font:10px var(--mono);letter-spacing:.12em;color:var(--cream);text-transform:uppercase}
+.status{display:inline-block;background:#fff;color:var(--red);font:700 13px var(--body);letter-spacing:.16em;padding:10px 14px;text-transform:uppercase;margin-top:8px}
+.sky{position:absolute;left:0;bottom:-1px;width:100%;height:clamp(150px,19vw,300px);z-index:0;fill:var(--ink);pointer-events:none}
+
+@media(min-width:600px){
+  .hero{padding:96px 20px 220px}
+  .chips li{font-size:13px}
+  .count{gap:10px}
+  .count .box{min-width:62px;padding:10px 8px 8px}
+  .count .box span{font-size:11px;letter-spacing:.14em}
+}
+
+@media(min-width:900px){
+  .hero .sil{right:3%;top:90px;opacity:.38}
+}

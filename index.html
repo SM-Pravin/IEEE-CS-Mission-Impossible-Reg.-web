@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mission: Impossible · IEEE CIS · SSN · 9 Oct 2026</title>
+<meta name="description" content="Mission: Impossible — an AI pitch-and-build challenge by IEEE CIS, SSN Student Branch. 9 October 2026, 9:30 AM to 1:30 PM, SSN College of Engineering. Squads of 3–4.">
+<meta name="theme-color" content="#d3130e">
+<meta property="og:title" content="Mission: Impossible · Make the Impossible Work">
+<meta property="og:description" content="Pitch a crazy AI concept. Build it. 9 Oct 2026 · SSN College of Engineering.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Saira+Stencil+One&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/sections.css">
+<link rel="stylesheet" href="css/effects.css">
+
+<!-- classic deferred scripts (no build step, works from file:// too). Order matters. -->
+<script defer src="js/utils.js"></script>
+<script defer src="data/event.js"></script>
+<script defer src="js/art/silhouette.js"></script>
+<script defer src="js/art/helicopter.js"></script>
+<script defer src="js/art/skyline.js"></script>
+<script defer src="js/art/hud.js"></script>
+<script defer src="js/features/bind.js"></script>
+<script defer src="js/features/details.js"></script>
+<script defer src="js/features/rules.js"></script>
+<script defer src="js/features/leaks.js"></script>
+<script defer src="js/features/schedule.js"></script>
+<script defer src="js/features/countdown.js"></script>
+<script defer src="js/features/calendar.js"></script>
+<script defer src="js/features/reveal.js"></script>
+<script defer src="js/features/nav.js"></script>
+<script defer src="js/features/scroll.js"></script>
+<script defer src="js/features/intro.js"></script>
+<script defer src="js/main.js"></script>
+</head>
+<body class="locked">
+
+<!-- intro: five-second self-destruct -->
+<div id="intro" role="dialog" aria-label="Intro">
+  <div data-art="hud" data-class="hud-bg"></div>
+  <p class="tag mono">// IMF Directive 001-A · Encrypted transmission</p>
+  <h2>This message will self-destruct in</h2>
+  <div class="num" id="introNum">5</div>
+  <div class="fuse"><i id="fuse"></i></div>
+  <button class="skip" id="skip" type="button">Skip briefing</button>
+</div>
+
+<!-- scroll rope: agent drops as you scroll -->
+<div class="rope" aria-hidden="true">
+  <i id="ropeLine"></i>
+  <svg id="agent" viewBox="0 0 20 30" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round">
+    <circle cx="10" cy="6" r="3.4" fill="#fff"/><path d="M10 10v9M10 13l-5 5M10 13l5 3M10 19l-4 9M10 19l5 8"/>
+  </svg>
+</div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="Mission: Impossible, back to top">
+    <div class="brand-logos">
+      <img src="assets/logos/ieee-logo.png" alt="IEEE" class="brand-logo">
+      <i class="brand-sep"></i>
+      <img src="assets/logos/ieee-cis-logo.png" alt="IEEE CIS" class="brand-logo">
+      <i class="brand-sep"></i>
+      <img src="assets/logos/ssn-logo.png" alt="SSN" class="brand-logo">
+    </div>
+  </a>
+  <nav id="menu" aria-label="Sections">
+    <a href="#briefing">The Challenge</a>
+    <a href="#intel">Scenario Leaks</a>
+    <a href="#schedule">Schedule</a>
+    <a href="#details">Details</a>
+    <a href="#rules">Rulebook</a>
+  </nav>
+  <a class="btn sm red" data-reg href="#register">Register</a>
+  <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
+</header>
+
+<main id="top">
+
+<section class="hero" aria-label="Mission: Impossible">
+  <i class="streak s1"></i><i class="streak s2"></i>
+  <div data-art="silhouette"></div>
+  <div data-art="helicopter"></div>
+
+  <div class="inner">
+    <p class="presents mono in" style="--i:0">IEEE CIS presents · SSN Student Branch</p>
+    <h1 aria-label="Mission: Impossible">
+      <span class="ln glitch in" style="--i:1" data-t="MISSION:" aria-hidden="true">MISSI<span class="o">O</span>N:</span>
+      <span class="ln glitch in" style="--i:2" data-t="IMPOSSIBLE" aria-hidden="true">IMPOSSIBLE</span>
+    </h1>
+    <p class="tagline in" style="--i:3" data-bind="tagline">Make the impossible work</p>
+    <ul class="chips in" id="chips" style="--i:4"></ul>
+    <div class="cta-row in" style="--i:5">
+      <a class="btn dark" data-reg href="#register">Accept the mission</a>
+      <a class="btn ghost" href="#rules">Read the rulebook</a>
+    </div>
+    <div class="in countdown-block" style="--i:6">
+      <div class="count-header-row">
+        <p class="count-label mono" id="cdLabel">Mission begins in</p>
+        <div class="cal-sync-pill" aria-label="Calendar sync options">
+          <span class="cal-sync-tag mono">SYNC:</span>
+          <a href="#" data-cal="google" class="cal-pill" aria-label="Add to Google Calendar" title="Add to Google Calendar">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+            <span>Google</span>
+          </a>
+          <a href="#" data-cal="ics" class="cal-pill" aria-label="Download iCal (.ics) for Apple/Outlook" title="Download iCalendar file">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>iCal</span>
+          </a>
+        </div>
+      </div>
+      <div class="count" id="cd" role="timer" aria-live="off">
+        <div class="box"><b id="cdD">--</b><span>days</span></div>
+        <div class="box"><b id="cdH">--</b><span>hrs</span></div>
+        <div class="box"><b id="cdM">--</b><span>min</span></div>
+        <div class="box"><b id="cdS">--</b><span>sec</span></div>
+      </div>
+      <p class="status" id="cdStatus" hidden></p>
+    </div>
+  </div>
+
+  <div data-art="skyline"></div>
+</section>
+
+<!-- Tactical Section Divider 01 -->
+<div class="hazard-divider" aria-hidden="true">
+  <div class="hazard-stripes"></div>
+  <div class="hazard-badge">IMF_PERIMETER // SEC-01: BRIEFING</div>
+</div>
+
+<section class="sec brief" id="briefing">
+  <div class="wrap">
+    <span class="kicker mono rv">Directive 001-A</span>
+    <h2 class="rv">Your mission, should you choose to accept it</h2>
+    <p class="lead rv">Two rounds. First you sell the idea, then you build it. Squads of 3–4 operatives, any AI tool you like, four hours on the clock.</p>
+    <div class="rounds">
+      <article class="round">
+        <span class="no" aria-hidden="true">1</span>
+        <p class="mono" style="color:var(--red-hot)">Round 1</p>
+        <h3>Pitch the Impossible</h3>
+        <p>Sell a crazy AI concept to an unconventional audience. The weirder the room, the better the pitch has to be.</p>
+      </article>
+      <article class="round">
+        <span class="no" aria-hidden="true">2</span>
+        <p class="mono" style="color:var(--red-hot)">Round 2</p>
+        <h3>Build It</h3>
+        <p>Turn your pitch into a working prototype. No slides, no mock-ups, a thing that runs.</p>
+        <div class="big90"><b data-build-min>85</b><span class="mono">minutes on the clock</span></div>
+      </article>
+    </div>
+    <div class="tools rv">
+      <strong>Use any AI tool</strong>
+      <span>Full access to ChatGPT, Claude, Gemini and dev tools.</span>
+    </div>
+  </div>
+</section>
+
+<!-- Tactical Section Divider 02 -->
+<div class="hazard-divider" aria-hidden="true">
+  <div class="hazard-stripes"></div>
+  <div class="hazard-badge">INTEL_FEED // SEC-02: LEAKS</div>
+</div>
+
+<section class="sec intel" id="intel">
+  <div class="wrap">
+    <span class="kicker mono rv">Round 1 · Intel</span>
+    <h2 class="rv">Scenario leaks</h2>
+    <p class="lead rv">Two Round 1 scenarios have leaked. Tap to declassify. The best pitch in the room earns an exclusive bypass code.</p>
+    <div class="leaks" id="leaks"></div>
+  </div>
+</section>
+
+<!-- Tactical Section Divider 03 -->
+<div class="hazard-divider" aria-hidden="true">
+  <div class="hazard-stripes"></div>
+  <div class="hazard-badge">TIMELINE_SYNC // SEC-03: SCHEDULE</div>
+</div>
+
+<section class="sec sched" id="schedule">
+  <div class="wrap">
+    <span class="kicker mono rv" style="color:#fff" data-bind="dateLabel">9 October 2026</span>
+    <h2 class="rv">Live schedule</h2>
+    <p class="lead rv" style="color:#ffe3df">On event day this page tracks the clock and marks what's happening right now.</p>
+    <p class="tz mono">All times IST</p>
+    <ol class="tl" id="tl"></ol>
+  </div>
+</section>
+
+<!-- Tactical Section Divider 04 -->
+<div class="hazard-divider" aria-hidden="true">
+  <div class="hazard-stripes"></div>
+  <div class="hazard-badge">FIELD_BRIEF // SEC-04: DETAILS</div>
+</div>
+
+<section class="sec details" id="details">
+  <div class="wrap">
+    <span class="kicker mono rv">Field briefing</span>
+    <h2 class="rv">Event details</h2>
+    <div class="paper rv">
+      <dl class="specs" id="specs"></dl>
+      <div class="paper-cal-bar">
+        <div class="paper-cal-info">
+          <span class="mono paper-cal-kicker">MISSION TIMELINE SYNC</span>
+          <div class="paper-cal-title">Friday, 9 October 2026 · 09:30 AM – 01:30 PM IST</div>
+        </div>
+        <div class="paper-cal-actions">
+          <a href="#" data-cal="google" class="btn sm dark cal-btn" aria-label="Add to Google Calendar">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+            Google Cal
+          </a>
+          <a href="#" data-cal="ics" class="btn sm red cal-btn" aria-label="Download iCal (.ics) file">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            iCal (.ics)
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="prizes">
+      <h3>The payout</h3>
+      <div class="podium" id="podium"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Tactical Section Divider 05 -->
+<div class="hazard-divider" aria-hidden="true">
+  <div class="hazard-stripes"></div>
+  <div class="hazard-badge">PROTOCOL_001 // SEC-05: RULEBOOK</div>
+</div>
+
+<section class="sec rules" id="rules">
+  <div class="wrap">
+    <span class="kicker mono rv">IMF Directive 001-A · Restricted</span>
+    <h2 class="rv">Official agent rulebook</h2>
+    <p class="lead rv">Six sections. Read them before you walk in. Tap a section to open it.</p>
+    <div class="acc" id="acc"></div>
+  </div>
+</section>
+
+<!-- Tactical Section Divider 06 -->
+<div class="hazard-divider" aria-hidden="true">
+  <div class="hazard-stripes"></div>
+  <div class="hazard-badge">MISSION_AUTH // SEC-06: ENLIST</div>
+</div>
+
+<section class="sec reg" id="register">
+  <div class="wrap">
+    <span class="kicker mono rv" style="color:#fff">Squads of 3–4</span>
+    <h2 class="rv">Accept the mission</h2>
+    <p class="lead rv" style="color:#fff">Register your squad on the Google Form. Fees are per head.</p>
+    <div class="fees" id="fees"></div>
+    <a class="btn dark" data-reg href="#register">Open registration form</a>
+    <p class="note">Opens the Google Form in a new tab.</p>
+    <div class="contact">
+      <p class="mono">Questions? Field support</p>
+      <a data-tel href="#register"></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-logos">
+    <img src="assets/logos/ieee-logo.png" alt="IEEE Logo" class="footer-logo">
+    <img src="assets/logos/ieee-cis-logo.png" alt="IEEE Computational Intelligence Society Logo" class="footer-logo">
+    <img src="assets/logos/ssn-logo.png" alt="SSN Logo" class="footer-logo">
+  </div>
+  <div class="row"><span>IEEE SSN Student Branch</span><span>IEEE Computational Intelligence Society</span><span>IEEE Day 2026</span></div>
+  <small>This page will not self-destruct.</small>
+</footer>
+
+<div class="dock" id="dock">
+  <div>9 Oct · SSN<small>₹25 CIS · ₹35 non-CIS</small></div>
+  <a class="btn red sm" data-reg href="#register">Register</a>
+</div>
+
+</body>
+</html>
